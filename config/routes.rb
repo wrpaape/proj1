@@ -1,10 +1,10 @@
 Rails.application.routes.draw do
-
   get '/users', to: 'users#show'
   # When a GET request comes to the URL /users then send that to
   # The index action of the users contoller.
   get '/users/:id', to: 'users#index'
 
+  get '/users/:id/:method', to: 'users#method'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

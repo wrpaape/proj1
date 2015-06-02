@@ -2,7 +2,7 @@ class User < ActiveRecord::Base
   def get(params)
     @response_code = "200"
     @response = []
-    @response << "-" * `tput cols`.chomp.to_i
+    @response << "-" * 50
     id, string, limit, offset = [params[:id], params.fetch(:first_name, "%"), params.fetch(:limit, - 1).to_i, params.fetch(:offset, 0).to_i]
 
     if id
@@ -11,7 +11,7 @@ class User < ActiveRecord::Base
       else
         @response_code = "404"
         @response << "Not Found LOL"
-        @response << "-" * `tput cols`.chomp.to_i
+        @response << "-" * 50
       end
     else
       user_matches = User.where("first_name LIKE ?", "#{string}%").limit(limit).offset(offset)
@@ -20,14 +20,14 @@ class User < ActiveRecord::Base
       else
         @response_code = "404"
         @response << "Not Found LOL"
-        @response << "-" * `tput cols`.chomp.to_i
+        @response << "-" * 50
       end
     end
 
     @response << "Response Code: #{@response_code}"
-    @response << "-" * `tput cols`.chomp.to_i
+    @response << "-" * 50
     @response = @response.join("<p>")
-    [@response, @response_code.to_sym]
+    [@response, @response_code.to_i]
   end
 
   def get_all(users)
@@ -36,7 +36,7 @@ class User < ActiveRecord::Base
       user.attributes.each do |k, v|
         @response << "   #{k} => #{v}"
       end
-      @response << "-" * `tput cols`.chomp.to_i
+      @response << "-" * 50
     end
   end
 end

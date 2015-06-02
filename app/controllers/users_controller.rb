@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
   def show # Methods are called Actions in Controllers
+
+
     if params[:first_name] || params[:last_name] || params[:age]
       user_matches = User.new
       response, response_code = user_matches.get(params)
@@ -17,14 +19,37 @@ class UsersController < ApplicationController
     render text: response, status: response_code
   end
 
-  def search
-    # puts "*****"
-    # puts params.inspect
-    # puts "*****"
-    # query_pairs = params[:queries].split("&")
-    # param_k_v   = query_pairs.map { |query_pair| query_pair.split('=') }
-    # param_k_v.each { |k, v| params.store(k.to_sym, v) }
-
+  def method
+    response = []
+    response_code = 200
+    method = params[:method]
+    case method
+    when "delete"
+      if user = User.find_by(id: params[:id].to_i)
+        user.destroy
+        response << "-" * 50
+        response << "user#{params[:id]} Succesfully Deleted"
+        response << "-" * 50
+        response << "Response Code: #{@response_code}"
+        response << "-" * 50
+      else
+        response_code = 404
+        response << "-" * 50
+        response << "Not Found LOL"
+        response << "-" * 50
+        response << "Response Code: #{@response_code}"
+        response << "-" * 50
+      end
+    else
+      response_code = 404
+      response << "-" * 50
+      response << "Not Found LOL"
+      response << "-" * 50
+      response << "Response Code: #{@response_code}"
+      response << "-" * 50
+    end
+    response = response.join("<p>")
+    render text: response, status: response_code
   end
 end
 
