@@ -1,39 +1,30 @@
 class UsersController < ApplicationController
-  def index # Methods are called Actions in Controllers
-
-    all_users = User.all
-    render text: print_users(all_users)
-  end
-
-  def show
-    if user = User.find_by(id: params[:id])
-      render text: print_users([user])
+  def show # Methods are called Actions in Controllers
+    if params[:first_name] || params[:last_name] || params[:age]
+      user_matches = User.new
+      response, response_code = user_matches.get(params)
+      render text: response, status: response_code
     else
-      render text: 'User Not Found', status: 404
+      all_users = User.new
+      response, response_code = all_users.get(params)
+      render text: response, status: response_code
     end
   end
 
-  private
-
-  def print_users(users)
-    string_users = []
-    string_users << line
-    users.each do |user|
-      string_users << "user#{user.id.to_s}:"
-      string_users << tab + "first name: #{user.first_name}"
-      string_users << tab + "last name: #{user.last_name}"
-      string_users << tab + "age: #{user.age}"
-      string_users << line
-    end
-    string_users.join("<p>")
+  def index
+    user = User.new
+    response, response_code = user.get(params)
+    render text: response, status: response_code
   end
 
-  def tab
-    "     "
-  end
+  def search
+    # puts "*****"
+    # puts params.inspect
+    # puts "*****"
+    # query_pairs = params[:queries].split("&")
+    # param_k_v   = query_pairs.map { |query_pair| query_pair.split('=') }
+    # param_k_v.each { |k, v| params.store(k.to_sym, v) }
 
-  def line
-    "______________________\n"
   end
 end
 
