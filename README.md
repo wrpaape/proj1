@@ -1,32 +1,3 @@
-== README
-
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
-
 #Baby's First Dynamic Rails App
 ###Description
 - Building a Rails app that returns users from a database given the correct URL
@@ -40,8 +11,8 @@ Please feel free to use a different markup language if you do not plan to run
 - Enter the following in the terminal under the path of your cloned directory:
 
 ```
-$ rake db:setup
 $ rake db:migrate
+$ rake db:setup
 ```
 - Now you can turn on the rails server
 
@@ -67,6 +38,8 @@ $ rails s
 - rails is p cool
 
 ###Contents of this Repo
+
+```
 proj1
 ├── Gemfile
 ├── Gemfile.lock
@@ -164,3 +137,4 @@ proj1
     └── assets
         ├── javascripts
         └── stylesheets
+```
