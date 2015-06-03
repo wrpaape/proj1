@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
   def get(params)
-    @response_code = "200"
     @response = []
+    @response_code = "200"
     @response << "-" * 50
     id, string, limit, offset = [params[:id], params.fetch(:first_name, "%"), params.fetch(:limit, - 1).to_i, params.fetch(:offset, 0).to_i]
 

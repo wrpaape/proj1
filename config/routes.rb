@@ -8,6 +8,7 @@ Rails.application.routes.draw do
 
   get '/users', to: 'users#query'
 
+  get ':gibberish', to: 'users#not_found'
   # When a GET request comes to the URL /users then send that to
   # The index action of the users contoller.
 
