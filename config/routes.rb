@@ -1,10 +1,18 @@
 Rails.application.routes.draw do
-  get '/users', to: 'users#show'
+
+  get '/users/:id/delete', to: 'users#delete'
+
+  get '/users/create', to: 'users#create'
+
+  get '/users/:id', to: 'users#query'
+
+  get '/users', to: 'users#query'
+
   # When a GET request comes to the URL /users then send that to
   # The index action of the users contoller.
-  get '/users/:id', to: 'users#index'
 
-  get '/users/:id/:method', to: 'users#method'
+
+
 
 
   # The priority is based upon order of creation: first created -> highest priority.

@@ -23,7 +23,6 @@ class User < ActiveRecord::Base
         @response << "-" * 50
       end
     end
-
     @response << "Response Code: #{@response_code}"
     @response << "-" * 50
     @response = @response.join("<p>")
